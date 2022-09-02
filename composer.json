@@ -12,6 +12,7 @@
         "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.13",
+        "guzzlehttp/guzzle": "^7.5",
         "league/csv": "^9.8",
         "league/flysystem-bundle": "^2.3",
         "nelmio/cors-bundle": "^2.2",

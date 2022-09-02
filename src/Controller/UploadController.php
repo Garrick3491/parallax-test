@@ -14,16 +14,14 @@ use Ramsey\Uuid\Uuid;
 use App\Upload\Validation\FileValidator;
 use League\Flysystem\FilesystemOperator;
 use App\Data\DeviceRow;
+use App\Upload\Messenger\DeviceToApiImporter;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 class UploadController extends AbstractController
 {
 
-    public function __construct(private MessageBusInterface $messageBus)
-    {}
-
     #[Route('/upload', name: 'app_upload')]
-    public function index(Request $request, EntityManagerInterface $em, FileValidator $validator, FilesystemOperator $defaultStorage): Response
+    public function index(Request $request, EntityManagerInterface $em, FileValidator $validator, FilesystemOperator $defaultStorage, DeviceToApiImporter $importer): Response
     {
         $file = new File();
         $form = $this->createForm(FileUploadType::class, $file);
@@ -53,7 +51,7 @@ class UploadController extends AbstractController
                 foreach ($csv as $row)
                 {
                     $device = DeviceRow::make($row);
-                    $this->messageBus->dispatch($device);
+                    $importer->import($device);
                 }
 
                 $file->setLocation('/var/storage/temp' . $uniqueName . '.' . $uploadedFile->guessExtension());

@@ -91,7 +91,6 @@ final class DeviceRow
         $self->serial_number = $row['serial_number'];
 
         return $self;
-        }
-
+    }
 
 }
