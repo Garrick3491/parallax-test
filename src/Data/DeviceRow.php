@@ -9,13 +9,13 @@ final class DeviceRow
     private string $address;
     private string $longitude;
     private string $latitude;
-    private string $device_type;
+    private string $deviceType;
     private string $manufacturer;
     private string $model;
-    private \DateTime $install_date;
+    private \DateTime $installDate;
     private string $note;
     private string $eui;
-    private string $serial_number;
+    private string $serialNumber;
 
     public function getName(): string
     {
@@ -39,7 +39,7 @@ final class DeviceRow
 
     public function getDeviceType(): string
     {
-        return $this->device_type;
+        return $this->deviceType;
     }
 
     public function getManufacturer(): string
@@ -54,7 +54,7 @@ final class DeviceRow
 
     public function getInstallDate(): \DateTime
     {
-        return $this->install_date;
+        return $this->installDate;
     }
 
     public function getNote(): string
@@ -69,7 +69,7 @@ final class DeviceRow
 
     public function getSerialNumber(): string
     {
-        return $this->serial_number;
+        return $this->serialNumber;
     }
 
     /**
@@ -82,13 +82,13 @@ final class DeviceRow
         $self->address = $row['address'];
         $self->longitude = $row['longitude'];
         $self->latitude = $row['latitude'];
-        $self->device_type  = $row['device_type'];
+        $self->deviceType  = $row['device_type'];
         $self->manufacturer = $row['manufacturer'];
         $self->model = $row['model'];
-        $self->install_date = new \DateTime($row['install_date']);
+        $self->installDate = new \DateTime($row['install_date']);
         $self->note = $row['notes'];
         $self->eui = $row['eui'];
-        $self->serial_number = $row['serial_number'];
+        $self->serialNumber = $row['serial_number'];
 
         return $self;
     }
