@@ -20,6 +20,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column]
+    /**
+     * @var array<mixed>
+     */
     private array $roles = [];
 
     /**
@@ -54,10 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return (string) $this->email;
     }
-
-    /**
-     * @see UserInterface
-     */
+    
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -67,6 +67,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
+
+    /**
+     * @param array<mixed> $roles
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -92,7 +96,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;

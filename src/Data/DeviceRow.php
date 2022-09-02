@@ -12,7 +12,7 @@ final class DeviceRow
     private string $device_type;
     private string $manufacturer;
     private string $model;
-    private \DateTimeInterface $install_date;
+    private \DateTime $install_date;
     private string $note;
     private string $eui;
     private string $serial_number;
@@ -67,12 +67,15 @@ final class DeviceRow
         return $this->eui;
     }
 
-    public function getSerialNumber()
+    public function getSerialNumber(): string
     {
         return $this->serial_number;
     }
 
-    public static function make(array $row)
+    /**
+     *  @param array<mixed> $row
+     **/
+    public static function make(array $row): self
     {
         $self = new self();
         $self->name = $row['name'];

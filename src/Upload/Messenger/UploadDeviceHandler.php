@@ -7,7 +7,7 @@ use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class UploadDeviceHandler implements MessageHandlerInterface
 {
-    public function __invoke(DeviceRow $device)
+    public function __invoke(DeviceRow $device): void
     {
         // do something with the resource
     }
