@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\FileRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File as HttpFoundationFile;
 
 #[ORM\Entity(repositoryClass: FileRepository::class)]
 class File

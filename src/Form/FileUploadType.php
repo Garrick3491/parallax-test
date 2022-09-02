@@ -3,11 +3,14 @@
 namespace App\Form;
 
 use App\Entity\File;
+use Symfony\Component\Validator\Constraints\File as ConstraintFile;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class FileType extends AbstractType
+class FileUploadType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -17,14 +20,16 @@ class FileType extends AbstractType
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
+                    new ConstraintFile([
                         'mimeTypes' => [
                             'text/csv',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid CSV document',
                     ])
                 ]
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Upload File'
             ])
         ;
     }
