@@ -10,10 +10,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: DeviceRepository::class)]
 #[ApiResource(
+        attributes: ["security" => "is_granted('ROLE_USER')"],
         collectionOperations: [
             'get', 'post' => [
-                'path' => '/device',
-                'status' => 401,
+                "messenger" => true,
+                'output' => false,
+                'status' => 202,
             ]
         ],
         itemOperations: ['get', 'put', 'delete'],

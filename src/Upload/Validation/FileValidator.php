@@ -2,15 +2,23 @@
 
 namespace App\Upload\Validation;
 
-use App\Entity\File;
-use App\Form\FileType;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use League\Csv\Reader;
 
 class FileValidator
 {
-    
+    public function validateCsv(Reader $csv): bool
+    {
+        $headers = $csv->getHeader();
+
+        foreach ($headers as $header)
+        {
+            if (!in_array($header, [
+                'name',	'address', 'longitude', 'latitude', 'device_type', 'manufacturer',	'model', 'install_date', 'notes', 'eui', 'serial_number'	
+            ]))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
